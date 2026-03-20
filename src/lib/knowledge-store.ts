@@ -20,6 +20,7 @@ class KnowledgeStore {
         content: 'SpaceX 完成星舰第六次综合测试飞行，成功实现筷子捕获助推器。月球登陆计划加速推进。',
         source: 'SpaceX Official',
         tags: ['SpaceX', '星舰', '火箭回收'],
+        type: 'news',
       },
       {
         domainId: 'longevity',
@@ -27,6 +28,7 @@ class KnowledgeStore {
         content: '最新研究表明 combination senolytics 可以显著减少老化细胞负担，延长健康寿命约25%。',
         source: 'Nature Aging',
         tags: ['Senolytics', '抗衰老', '临床试验'],
+        type: 'research',
       },
       {
         domainId: 'ai-safety',
@@ -34,6 +36,7 @@ class KnowledgeStore {
         content: 'Constitutional AI 方法在大型语言模型中展现出更好的行为约束效果，减少有害输出。',
         source: 'Anthropic Research',
         tags: ['对齐', 'Constitutional AI', 'RLHF'],
+        type: 'research',
       },
       {
         domainId: 'growth',
@@ -41,6 +44,7 @@ class KnowledgeStore {
         content: '使用间隔重复法学习新知识，记忆保持率比传统方法提高约200%，适用于语言和专业技能学习。',
         source: 'Cognitive Science Journal',
         tags: ['学习方法', '记忆', '间隔重复'],
+        type: 'research',
       },
     ]
 
