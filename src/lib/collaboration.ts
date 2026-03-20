@@ -306,7 +306,7 @@ export function validateCrossDomain(source: string, confidence: number): boolean
 export function generateA2AMessage(
   fromDomain: string,
   toDomain: string,
-  messageType: string,
+  messageType: 'knowledge_share' | 'cross_validation' | 'collaboration_request' | 'insight_query',
   content: any
 ): A2AMessage {
   return {

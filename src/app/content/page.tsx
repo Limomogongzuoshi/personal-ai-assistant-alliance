@@ -25,6 +25,7 @@ interface PublishRecord {
   url?: string
   views?: number
   likes?: number
+  error?: string
 }
 
 interface PlatformConfig {

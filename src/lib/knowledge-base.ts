@@ -18,10 +18,11 @@ export class KnowledgeBaseManager {
     })
   }
 
-  async addKnowledgeItem(domainId: string, item: Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified'>): Promise<KnowledgeItem> {
+  async addKnowledgeItem(domainId: string, item: Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified' | 'domainId'>): Promise<KnowledgeItem> {
     const knowledge = this.knowledgeStore.get(domainId) || []
     const newItem: KnowledgeItem = {
       ...item,
+      domainId,
       id: `${domainId}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       timestamp: Date.now(),
       verified: false,
@@ -121,7 +122,7 @@ export class KnowledgeBaseManager {
     }
   }
 
-  private async fetchFromSource(source: KnowledgeSource): Promise<Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified'>[]> {
+  private async fetchFromSource(source: KnowledgeSource): Promise<Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified' | 'domainId'>[]> {
     if (source.type === 'url' && source.url) {
       return this.fetchFromURL(source.url, source.domainId)
     }
@@ -129,7 +130,7 @@ export class KnowledgeBaseManager {
     return []
   }
 
-  private async fetchFromURL(url: string, domainId: string): Promise<Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified'>[]> {
+  private async fetchFromURL(url: string, domainId: string): Promise<Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified' | 'domainId'>[]> {
     try {
       const response = await fetch(`/api/content?url=${encodeURIComponent(url)}&domain=${domainId}`)
       if (!response.ok) {
@@ -162,10 +163,9 @@ export class KnowledgeBaseManager {
   }
 
   private async initializeDomainKnowledge(domainId: string): Promise<void> {
-    const sampleKnowledge: Record<string, Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified'>[]> = {
+    const sampleKnowledge: Record<string, Omit<KnowledgeItem, 'id' | 'timestamp' | 'verified' | 'domainId'>[]> = {
       space: [
         {
-          domainId: 'space',
           title: 'SpaceX 星舰最新进展',
           content: 'SpaceX 完成星舰第六次综合测试飞行，成功实现筷子捕获助推器。月球登陆计划加速推进。',
           source: 'SpaceX Official',
@@ -173,7 +173,6 @@ export class KnowledgeBaseManager {
           type: 'news',
         },
         {
-          domainId: 'space',
           title: 'NASA 阿尔忒弥斯计划',
           content: 'NASA 阿尔忒弥斯计划目标在2026年实现载人登月，并在月球轨道建立深空门户站。',
           source: 'NASA Official',
@@ -183,7 +182,6 @@ export class KnowledgeBaseManager {
       ],
       longevity: [
         {
-          domainId: 'longevity',
           title: 'Senolytics 药物新突破',
           content: '最新研究表明 combination senolytics 可以显著减少老化细胞负担，延长健康寿命约25%。',
           source: 'Nature Aging',
@@ -191,7 +189,6 @@ export class KnowledgeBaseManager {
           type: 'research',
         },
         {
-          domainId: 'longevity',
           title: 'NMN 研究进展',
           content: 'NMN（烟酰胺单核苷酸）在多项临床试验中显示出改善代谢功能和延缓衰老的潜力。',
           source: 'Cell Reports',
@@ -201,7 +198,6 @@ export class KnowledgeBaseManager {
       ],
       'ai-safety': [
         {
-          domainId: 'ai-safety',
           title: 'AI 对齐研究新方向',
           content: 'Constitutional AI 方法在大型语言模型中展现出更好的行为约束效果，减少有害输出。',
           source: 'Anthropic Research',
@@ -209,7 +205,6 @@ export class KnowledgeBaseManager {
           type: 'research',
         },
         {
-          domainId: 'ai-safety',
           title: 'AI 安全评估框架',
           content: 'ETHENTIC AI 提出的多维度安全评估框架涵盖能力评估、风险评估和对齐程度评估。',
           source: 'AI Safety Research',
@@ -219,7 +214,6 @@ export class KnowledgeBaseManager {
       ],
       growth: [
         {
-          domainId: 'growth',
           title: '间隔重复法学习效率',
           content: '使用间隔重复法学习新知识，记忆保持率比传统方法提高约200%，适用于语言和专业技能学习。',
           source: 'Cognitive Science Journal',
@@ -227,7 +221,6 @@ export class KnowledgeBaseManager {
           type: 'research',
         },
         {
-          domainId: 'growth',
           title: '刻意练习的核心原则',
           content: '刻意练习强调专注、反馈、突破舒适区，是技能提升的最有效方法之一。',
           source: 'Peak Journal',

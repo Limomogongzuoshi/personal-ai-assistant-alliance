@@ -415,7 +415,7 @@ export default function OpenClawPage() {
                           </div>
                           <div className="font-medium text-sm">{subTask.title}</div>
                         </div>
-                        {idx < task.subTasks.length - 1 && <ArrowRight className="h-4 w-4 flex-shrink-0" />}
+                        {idx < (task.subTasks?.length || 0) - 1 && <ArrowRight className="h-4 w-4 flex-shrink-0" />}
                       </div>
                     ))}
                   </div>

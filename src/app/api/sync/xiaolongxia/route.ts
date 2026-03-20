@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       }
 
       const result = await xiaolongxiaSync.syncToXiaolongxia(domainId)
-      return NextResponse.json({ success: result.success, ...result })
+      return NextResponse.json({ ...result })
     }
 
     if (action === 'sync_from') {
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       }
 
       const result = await xiaolongxiaSync.syncFromXiaolongxia(domainId)
-      return NextResponse.json({ success: result.success, ...result })
+      return NextResponse.json({ ...result })
     }
 
     if (action === 'sync_bidirectional') {

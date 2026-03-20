@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       }
 
       const result = await knowledgeBaseManager.syncSource(domainId, data.sourceId)
-      return NextResponse.json({ success: result.success, ...result })
+      return NextResponse.json({ ...result })
     }
 
     if (action === 'batch_add') {
