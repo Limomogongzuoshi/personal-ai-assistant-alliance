@@ -291,7 +291,7 @@ export const AI_SAFETY_LEARNING_PATH: LearningPath = {
         '思考超级智能风险',
       ],
       resources: [
-        { type: 'paper', title: 'AI Safety Fundamentals', difficulty: 'advanced' },
+        { type: 'course', title: 'AI Safety Fundamentals', difficulty: 'advanced' },
         { type: 'video', title: '超级智能风险讨论', duration: '1小时', difficulty: 'advanced' },
         { type: 'article', title: 'Agent系统安全', difficulty: 'advanced' },
       ],
